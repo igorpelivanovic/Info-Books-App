@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="containerItems">
+        <!--<item-preview ng-repeat="item in items" item: item></item-preview>
+        <item-skeleton ng-if="loading" ng-repeat="item in countItems"></item-skeleton>-->
+        <app-books-item *ngFor="let book of datas" [book]="book" (click)="goTo(book.id)"></app-books-item>
+        <ng-container *ngIf="loading">
+            <app-item-skeleton *ngFor="let count of createArr(skeletonCountNo)"></app-item-skeleton>
+        </ng-container>
+        <ng-container *ngIf="!loading && datas.length == 0">
+            <p class="notFound">not found</p>
+        </ng-container>
+    </div>
+</div>

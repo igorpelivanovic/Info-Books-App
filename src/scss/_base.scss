@@ -1,0 +1,780 @@
+@use "sass:map";
+
+
+*{
+    box-sizing: border-box;
+    font-family: "Helvetica";
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: map.get($lightTheme, "labelSearchBorder") transparent;
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+    border-radius: 8px;
+    }
+    &::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background-color: map.get($lightTheme, "headBtnColor");
+
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: map.get($lightTheme, "hoverHeadBtnColor")
+    }
+    input[type="text"]{
+        outline: none;
+        border: none;
+        display: block;
+    }
+    img{
+        width: 100%;
+        height: auto;
+    }
+    button{
+        display: block;
+        border: none;
+    }
+    .container{
+        margin: 0 auto;
+        max-width: 1200px;
+        //position: relative;
+
+
+    }
+    
+    .containerItem, .carouselItem{
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0px 0px 9px 0px #00000061;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+        .containerItemInfo{
+            padding: 5px 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: .5s background-position-y;
+            background: map.get($lightTheme, "headBtnColor");
+            background: linear-gradient(0deg, map.get($lightTheme, "headBtnColor") 0%, #232134 10%, #482cb911 50%, #87878700 61%);
+            background-size: 100% 200%;
+            background-position-y: 50%;
+            gap: 2px;
+            
+            &:hover{
+                background-position-y: bottom;
+                .hiddenData{
+                    max-height: 100px;
+                    flex: 0 0 content;
+                }
+                .copyRightContainer{
+                    transition: .5s transform ease-in-out;
+                    transform: translate(0%);
+                }
+            }
+            .title{
+                flex: 0 1 content;
+                font-weight: 700;
+                min-height: 0px;
+                color: map.get($lightTheme, "background");
+                font-size: .95em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-shadow: 0px 0px 4px  #00000080;
+            }
+            .hiddenData{
+                transition: .5s max-height ease-in-out;
+                flex: 0 0 0px;
+                max-height: 0px;
+                padding-top: 2px;
+                overflow: hidden;
+                span{
+                    display: block;
+                }
+                .author{
+                    font-size: .8em;
+                    color: map.get($lightTheme, "background");
+                }
+                .downloadCount{
+                    font-size: .7em;
+                    color: map.get($lightTheme, "background");
+                    margin: 5px 2px;
+                    i{
+                        margin-right: 5px;
+                    }
+                }
+            }
+            .copyRightContainer{
+                transition: .5s transform;
+                transition: "";
+                position: absolute;
+                top: 10px;
+                right: 0;
+                background-color: map.get($lightTheme, "headBtnColor");
+                color: map.get($lightTheme, "background");
+                padding: 8px 10px 8px 8px;
+                border-radius: 50% 0 0 50%;
+                transform: translateX(100%);
+            }
+        }
+    }
+    &:not(.dark){
+        &::-webkit-scrollbar-thumb {
+            background-color: map.get($lightTheme, "headBtnColor");;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: map.get($lightTheme, "hoverHeadBtnColor")
+        }
+        h1, h2, h3, h4, h5, h6{
+            color: map.get($lightTheme, "headTitle");
+        }
+        #app{
+            background-color: map.get($lightTheme, "background");
+            color: map.get($lightTheme, "textColor");
+            
+            header{
+                .headerTop{
+                    background-color: map.get($lightTheme, "background");
+                    .headerTopContainer{
+                        form{
+                            label[for="searchInput"]{
+                                background-color: map.get($lightTheme, "labelSearchBg");
+                                border: 1px solid map.get($lightTheme, "labelSearchBorder");
+                                
+                                    button[data-clear-input-search], input#searchInput::placeholder{
+                                        color: map.get($lightTheme, "labelSearchColor");
+                                    }
+                                    .applySearchBtn{
+                                        color: map.get($lightTheme, "headBtnColor");
+                                        background-color: transparent;
+                                        &:hover{
+                                            color: map.get($lightTheme, "hoverHeadBtnColor");
+                                        }
+                                    }
+                            }
+                        }
+                        button[data-apply-theme]{
+                            background-color: map.get($lightTheme, "headBtnColor");
+                            color: map.get($lightTheme, "background");
+                            &:hover{
+                                background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                            }
+                        }
+                    }
+                }
+                .headerBottom{
+                    background: linear-gradient(180deg, map.get($lightTheme, "background") 0%, #ffffff66 100%);
+                    h1{
+                        color: map.get($lightTheme, "headTitle");
+                    }
+                    button[data-filter-button]{
+                        color: map.get($lightTheme, "headBtnColor");
+                
+                        &:hover{
+                            color: map.get($lightTheme, "background");
+                            background-color: map.get($lightTheme, "hoverHeadBtnColor")
+                        }
+                    }
+                    .filtersBar{
+                        background-color: transparent;
+                        .filtersContainer{
+                            background-color: map.get($lightTheme, "background");
+                            box-shadow: 0px 4px 6px 0px #00000061;
+                            .filterContainer{
+                                label.indicatorContainer .indicator{
+                                    background-color: map.get($lightTheme, "copyRightBg");
+                                    border-color: map.get($lightTheme, "copyRightBorder");
+                                }
+                                .labelRange span{
+                                    color: map.get($lightTheme, "ceuntryValueColor");
+                                }
+                                &:has(input#copyrightFilterValue:checked) label.indicatorContainer .indicator{
+                                    background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                                    color: map.get($lightTheme, "background");
+                                    border-color: map.get($lightTheme, "copyRightCheckBorder");
+                                }
+                                input#copyrightFilterValue:checked~label.indicatorContainer .indicator{
+                                    background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                                    color: map.get($lightTheme, "background");
+                                    border-color: map.get($lightTheme, "copyRightCheckBorder");
+                                }
+                                .filterInputContainer{
+                                    border-color: map.get($lightTheme, "languagesOptionsColor");
+                                    .optionsContainer{
+                                        background-color: map.get($lightTheme, "background");
+                                        box-shadow: none;
+                                        border-color: map.get($lightTheme, "languagesOptionsColor");
+                                        scrollbar-color: map.get($lightTheme, "headBtnColor") transparent;
+    
+                                        &::-webkit-scrollbar-thumb {
+                                            background-color: map.get($lightTheme, "headBtnColor"); 
+                                        }
+                                        &::-webkit-scrollbar-thumb:hover {
+                                            background-color: map.get($lightTheme, "hoverHeadBtnColor"); 
+                                        }
+                                        &.active{
+                                            box-shadow: 0px 4px 6px 0px #00000061;
+                                        }
+                                        .option{
+                                            &:hover{
+                                                color: map.get($lightTheme, "background");
+                                                background-color: map.get($lightTheme, "languagesOptionColor")
+                                            }
+                                            &.active{
+                                                color: map.get($lightTheme, "background");
+                                                background-color: map.get($lightTheme, "headBtnColor")
+                                            }
+                                        }
+                                    }
+                                    .checkedValues{
+                                        .checkValue{
+                                            border-color:  map.get($lightTheme, "copyRightBorder");
+                                            background-color: map.get($lightTheme, "loadingItemsBgColor");
+                                            &:hover{
+                                                background-color: map.get($lightTheme, "checkLanguageOption");
+                                            }
+                                            .checkValueTitle{
+                                                .title{
+                                                    color: map.get($lightTheme, "textColor")
+                                                }
+                                            }
+                                            .checkValueBtn{
+                                                button[data-check-filter-value]{
+                                                    background-color: transparent;
+                                                    color: map.get($lightTheme, "textColor");
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .inputValue{
+                                        color: map.get($lightTheme, "textColor");
+                                        input#languageFilterValue::placeholder{
+                                            color: map.get($lightTheme, "textColor");
+                                        }
+                                    }
+                                }
+                                input[type="range"]::-webkit-slider-thumb{
+                                    border-color: map.get($lightTheme, "headBtnColor");
+                                    background-color: map.get($lightTheme, "background");
+                                }
+                                input[type="range"]::-moz-range-thumb{
+                                    border-color: map.get($lightTheme, "headBtnColor");
+                                    background-color: map.get($lightTheme, "background");
+                                }
+                                button.searchFilterBtn{
+                                    background-color: map.get($lightTheme, "headBtnColor");
+                                    color: map.get($lightTheme, "background");
+                                    &:hover{
+                                        background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            main{
+                .container.loading{
+                    .previewItem{
+                        .imgContainer{
+                            background: map.get($lightTheme, "loadingItemBgColor");
+                            &:before{
+                                background: map.get($lightTheme, "loadingLinearItemColor");
+                            }
+                        }
+                        .infoContainer{
+                            .titleItem h1, .author, .languages .label, .subjects .label, .downloadItemContainer{
+                                background-color: map.get($lightTheme, "loadingItemBgColor");
+                                &::before{
+                                    background: map.get($lightTheme, "loadingLinearItemColor");
+                                } 
+                            }
+                        }
+                    }
+                }
+                .containerItem{
+                    &.loading{
+                            background: map.get($lightTheme, "loadingItemsBgColor");
+                        &:before{
+                            background: map.get($lightTheme, "loadingLinearItemsColor");
+                        }
+                    }
+                }
+                .previewItem{
+                    background-color: map.get($lightTheme, "footerColor");
+    
+                    .loading{
+                        background-color: map.get($lightTheme, "loadingItemBgColor");
+    
+                        &::before{
+                            background: map.get($lightTheme, "loadingLinearItemColor");
+                        } 
+                    }
+                    .copyRightCheck{
+                        background-color: map.get($lightTheme, "background");
+                        color: map.get($lightTheme, "headBtnColor");
+                    }
+                    .titleItem::before{
+                            background-color: map.get($lightTheme, "footerLight");
+                        }
+                    button[data-subject-item-preview]{
+                        background-color: map.get($lightTheme, "headBtnColor");
+                        color: map.get($lightTheme, "background");
+        
+                        &:hover{
+                            background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                        }
+                    }
+                    button[data-download-item]{
+                        background-color: map.get($lightTheme, "headBtnColor");
+                        color: map.get($lightTheme, "background");
+        
+                        span.title{
+                            background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                            &::before,&::after{
+                                background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                            }
+                        }
+                    }
+                    button[data-close-model-download-options]{
+                        background-color: map.get($lightTheme, "headBtnColor");
+                        color: map.get($lightTheme, "background");
+                        &:hover{
+                            background-color: map.get($lightTheme, "hoverHeadBtnColor");
+                        }
+                    }
+                    .downloadOptionsContainer{
+                        background-color: #00000066;
+                        .dialog{
+                            background-color: map.get($lightTheme, "background");
+                            a{
+                                &:link,&:visited{
+                                    color: map.get($lightTheme, "headBtnColor");
+                                }
+                                &:hover{
+                                    color: map.get($lightTheme, "hoverHeadBtnColor");
+                                }
+                                &:active {
+                                    color: map.get($lightTheme, "headBtnColor");
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                .carouselContianer{
+                    .carouselItems{
+                        &::before{
+                            background: map.get($lightTheme, "background");
+                            background: linear-gradient(90deg, map.get($lightTheme, "background") 0%, #fafcff 80%, #ffffff00 100%);
+                        }
+                        &::after{
+                            background: map.get($lightTheme, "background");
+                            background: linear-gradient(270deg, map.get($lightTheme, "background") 0%, #f8fbff 80%, #ffffff00 100%);
+                        }
+                        button[data-slider-btn]{
+                            background-color: transparent;
+                            color: map.get($lightTheme, "headBtnColor");
+                            &:hover{
+                                background-color: map.get($lightTheme, "headBtnColor");
+                                color: map.get($lightTheme, "background");
+                            }
+                        }
+                        .carouselItem.loading{
+                            background-color: map.get($lightTheme, "carouselItemLoadingBg");
+                            &::before{
+                                background: map.get($lightTheme, "loadingLinearItemsColor");
+                            }
+                        }
+                        .carouselItem.default{
+                            background-color: map.get($lightTheme, "footerColor");
+            
+                            span.icon{
+                                background-color: map.get($lightTheme, "carouselItemDefaultMain");
+                                color: map.get($lightTheme, "footerColor");
+            
+                            }
+                            span.title{
+                                color: map.get($lightTheme, "carouselItemDefaultMain")5;
+            
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            footer{
+                background-color: map.get($lightTheme, "footerColor");
+                color: map.get($lightTheme, "textColor");
+        
+                button[data-up-to-top]{
+                    background-color: map.get($lightTheme, "headBtnColor");
+                    color: map.get($lightTheme, "background");
+                    &:hover{
+                        background-color: map.get($lightTheme, "hoverHeadBtnColor")
+                    }
+                }
+                a{
+                    color: map.get($lightTheme, "headBtnColor");
+                    &:hover{
+                        color: map.get($lightTheme, "hoverHeadBtnColor");
+                    }
+                }
+            }
+        }
+    }
+    &.dark{
+        background-color: map.get($darkTheme, "dark");
+        #app{
+            header{
+                .headerTop{
+                    background-color: map.get($darkTheme, "dark");
+                    .headerTopContainer{
+                        form{
+                            label[for="searchInput"]{
+                                
+                                border: 1px solid map.get($darkTheme, "purple-light-900");
+                                input, button[data-clear-input-search], input#searchInput::placeholder{
+                                    color: map.get($darkTheme, "gray-100");
+                                }
+                                .applySearchBtn{
+                                    color: map.get($darkTheme, "gray-100");
+                                    background-color: transparent;
+                                    &:hover{
+                                        color: map.get($darkTheme, "purple");
+                                    }
+                                }
+                               
+                            }
+                        }    
+                        .changeThemeInputContianer{
+                            button[data-apply-theme]{
+                                background-color: map.get($darkTheme, "purple");
+                                .circle{
+                                    transform: rotate(180deg);
+                                    transition: .5s transform;
+                                    transition: "";
+                                    transform: translateY(-50%) rotate(180deg);
+                                
+                                }
+                            }
+                        }
+                    }
+                }
+                .headerBottom{
+                    background: linear-gradient(180deg, map.get($darkTheme, "dark") 0%, #ffffff00 100%);
+                    h1{
+                        color: map.get($darkTheme, "gray-100");
+                    }
+                    button[data-filter-button]{
+                        color: map.get($darkTheme, "purple");
+                
+                        &:hover{
+                            color: map.get($darkTheme, "black");
+                            background-color: map.get($darkTheme, "purple-light-100")
+                        }
+                    }
+                    .filtersBar{
+                        .filtersContainer{
+                            background-color: map.get($darkTheme, "darkPurple");
+                            box-shadow: 0px 4px 6px 0px map.get($darkTheme, "black");
+                            .filterContainer{
+                                color: map.get($darkTheme, "gray-100");
+                                .labelRange span{
+                                    color: map.get($darkTheme, "indigo");
+                                }
+                                label.indicatorContainer .indicator{
+                                    background-color: map.get($darkTheme, "darkPurple-100");
+                                    border-color: map.get($darkTheme, "purple-light-900");
+                                }
+                                &:has(input#copyrightFilterValue:checked) label.indicatorContainer .indicator{
+                                    background-color: map.get($darkTheme, "purple-light-100");
+                                    color: map.get($darkTheme, "light");
+                                    border-color: map.get($darkTheme, "indigo");
+                                }
+                                .filterInputContainer{
+                                    border-color: map.get($darkTheme, "purple-light-900");
+                                    .optionsContainer{
+                                        background-color: map.get($darkTheme, "dark");
+                                        box-shadow: none;
+                                        border-color: map.get($darkTheme, "purple-light-900");
+                                        scrollbar-color: map.get($darkTheme, "purple") transparent;
+                                        &::-webkit-scrollbar-thumb {
+                                            background-color: map.get($darkTheme, "purple"); 
+                                        }
+                                        &::-webkit-scrollbar-thumb:hover {
+                                            background-color: map.get($darkTheme, "purple-light-100"); 
+                                        }
+                                        &.active{
+                                            box-shadow: 0px 4px 6px 0px #00000061;
+                                        }
+                                        .option{
+                                            &:hover{
+                                                color: map.get($darkTheme, "light");
+                                                background-color: map.get($darkTheme, "purple-light-100")
+                                            }
+                                            &.active{
+                                                color: map.get($darkTheme, "light");
+                                                background-color: map.get($darkTheme, "purple")
+                                            }
+                                        }
+                                    }
+                                    .checkedValues{
+                                        .checkValue{
+                                            border-color: map.get($darkTheme, "darkPurple-100");
+                                            background-color: map.get($darkTheme, "darkPurple-900");
+                                            color: map.get($darkTheme, "gray-100");
+                                            &:hover{
+                                                background-color: map.get($darkTheme, "darkPurple-200");
+                                            }
+                                            .checkValueBtn{
+                                                button[data-check-filter-value]{
+                                                    color: map.get($darkTheme, "gray-100");
+                                                    background-color: transparent;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .inputValue{
+                                        input, button[data-input-filter-clear]{
+                                            color: map.get($darkTheme, "gray-100");
+                                        }
+                                        input#languageFilterValue::placeholder{
+                                            color: map.get($darkTheme, "gray-100");
+                                        }
+                                    }
+                                }
+                                input[type="range"]::-webkit-slider-thumb{
+                                    border-color: map.get($darkTheme, "purple");
+                                    background-color: map.get($darkTheme, "gray-200");
+                                }
+                                input[type="range"]::-moz-range-thumb{
+                                    border-color: map.get($darkTheme, "purple");
+                                    background-color: map.get($darkTheme, "gray-200");
+                                }
+                                button.clearFilterBtn{
+                                    color: map.get($darkTheme, "gray-100");
+                                }
+                                button.searchFilterBtn{
+                                    background-color: map.get($darkTheme, "purple");
+                                    color: map.get($darkTheme, "black");
+                                    &:hover{
+                                        background-color: map.get($darkTheme, "purple-light-100");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            main{
+                .notFound{
+                    color: map.get($darkTheme, "gray-400");
+                }
+                .containerItem{
+                    &.loading{
+                        background-color: map.get($darkTheme, "darkPurple-300");
+                        &:before{
+                            background: linear-gradient(140deg, #761a1a00 44%, #32303b 50%, #7c3d3d00 56%)
+                        }
+                    }
+                }
+                .container.loading{
+                    .previewItem{
+                        .imgContainer{
+                            background-color: map.get($darkTheme, "darkPurple-400");
+                            &:before{
+                                background: linear-gradient(117deg, #761a1a00 44%, #46424F 50%, #7c3d3d00 56%)
+                            }
+                        }
+                        .infoContainer{
+                            .titleItem h1, .author, .languages .label, .subjects .label, .downloadItemContainer{
+                                background-color: map.get($darkTheme, "darkPurple-300");
+                                &::before{
+                                    background: linear-gradient(117deg, #761a1a00 44%, #46424F 50%, #7c3d3d00 56%)
+                                } 
+                            }
+                        }
+                    }
+                }
+                .previewItem{
+                    background-color: map.get($darkTheme, "dark-light-100");
+                    .titleItem{
+                        color: map.get($darkTheme, "gray-100");
+                        &::before{
+                            background: map.get($darkTheme, "darkPurple-400");
+                        }
+                    }
+                    .author, .languages .label, .subjects .label{
+                        color: map.get($darkTheme, "gray-300");
+                    }
+                    .languages .value{
+                        color: map.get($darkTheme, "gray-400");
+                    }
+                    button[data-subject-item-preview]{
+                        background-color: map.get($darkTheme, "purple");
+                        color: map.get($darkTheme, "light");
+        
+                        &:hover{
+                            background-color: map.get($darkTheme, "purple-light-100");
+                        }
+                    }
+                    button[data-download-item]{
+                        background-color: map.get($darkTheme, "purple");
+                        color: map.get($darkTheme, "light");
+        
+                        span.title{
+                            background-color: map.get($darkTheme, "purple-light-100");
+                            &::before,&::after{
+                                background-color: map.get($darkTheme, "purple-light-100");
+                            }
+                        }
+                    }
+                    button[data-close-model-download-options]{
+                        background-color: map.get($darkTheme, "purple");
+                        color: map.get($darkTheme, "light");
+                        &:hover{
+                            background-color: map.get($darkTheme, "purple-light-100");
+                        }
+                    }
+                    .downloadOptionsContainer{
+                        background-color: #00000066;
+                        .dialog{
+                            background-color: map.get($darkTheme, "dark");
+                            h2{
+                                color: map.get($darkTheme, "gray-100");
+                            }
+                            a{
+                                &:link,&:visited{
+                                    color: map.get($darkTheme, "purple");
+                                }
+                                &:hover{
+                                    color: map.get($darkTheme, "purple-light-100");
+                                }
+                                &:active {
+                                    color: map.get($darkTheme, "purple");
+                                }
+                            }
+                        }
+                    }
+                }
+                .carouselContianer{
+                    h2{
+                        color: map.get($darkTheme, "light");
+                    }
+                    .carouselItems{
+                        &::before{
+                            background: map.get($darkTheme, "dark");
+                            background: linear-gradient(90deg, map.get($darkTheme, "dark") 0%, map.get($darkTheme, "dark") 80%, #ffffff00 100%);
+                        }
+                        &::after{
+                            background: map.get($darkTheme, "dark");
+                            background: linear-gradient(270deg, map.get($darkTheme, "dark") 0%, map.get($darkTheme, "dark") 80%, #ffffff00 100%);
+                        }
+                        button[data-slider-btn]{
+                            background-color: transparent;
+                            color: map.get($darkTheme, "purple");
+                            &:hover{
+                                background-color: map.get($darkTheme, "purple");
+                                color: map.get($darkTheme, "dark");
+                            }
+                        }
+                        .carouselItem.loading{
+                            background: map.get($darkTheme, "dark-light-100");
+                            &:before{
+                                background: linear-gradient(140deg, #761a1a00 44%, map.get($darkTheme, "darkPurple-400") 50%, #7c3d3d00 56%)
+                            }
+                        }
+                        .carouselItem.default{
+                            .defaultContainer{
+                                background-color: map.get($darkTheme, "dark-light-100");
+                            }
+                            span.icon{
+                                background-color: map.get($darkTheme, "gray-400");
+                                color: map.get($darkTheme, "dark-light-100");
+            
+                            }
+                            span.title{
+                                color: map.get($darkTheme, "gray-400");
+            
+                            }
+                        }
+                    }
+                }
+
+            }
+            footer{
+                background-color: map.get($darkTheme, "dark-light-100");
+                color: map.get($darkTheme, "gray-100");
+                button[data-up-to-top]{
+                    background-color: map.get($darkTheme, "purple");
+                    &:hover{
+                        background-color: map.get($darkTheme, "purple-light-100")
+                    }
+                }
+                a{
+                    color: map.get($darkTheme, "gray-200");
+                    &:hover{
+                        color: map.get($darkTheme, "indigo");
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: map.get($mediaScreenBreakPoints, "largeScreen")){
+    body {
+        #app {
+            .container{
+                max-width: 1000px;
+            }
+        }
+    }
+}
+@media (max-width: map.get($mediaScreenBreakPoints, "smallScreen")){
+    body {
+        #app {
+            .container{
+                max-width: 750px;
+            }
+        }
+    }
+}
+@media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
+    body {
+        #app {
+            .container{
+                width: 100%;
+                padding-inline: 10px;            }
+            main{
+                margin-top: 200px;
+            }
+        }
+    }
+}
+@media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
+    body {
+        #app {
+            .container{
+                width: 100%;
+                padding-inline: 10px;            }
+            main{
+                margin-top: 200px;
+            }
+        }
+    }
+}

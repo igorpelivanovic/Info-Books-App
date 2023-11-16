@@ -1,0 +1,79 @@
+
+<div class="filtersBar" >
+    <div class="filtersContainer" @filtersContainer>
+        <form [formGroup]="filterForm" (submit)="submitForm()">
+            <div class="filterContainer lang">
+                <div class="filterLabelContainer">
+                    <label for="languageFilterValue">Languages:</label>
+                </div>
+                <div class="filterInputContainer">
+                    <div class="checkedValues">
+                        <ng-container *ngFor="let lang of languagesFormArray.controls let i = index">
+                            <div *ngIf="lang.value == true" class="checkValue" >
+                                <div class="checkValueTitle">
+                                    <span class="title">
+                                        {{this.filterBox.value.languages[i].title}}
+                                    </span>
+                                </div>
+                                <div class="checkValueBtn">
+                                    <button data-check-filter-value type="button" (click)="removeLangOption(i)">
+                                        <span class="icon">
+                                            <fa-icon [icon]="icons.faCircleXmark"></fa-icon>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="inputValue" (clickedOutside)="closeOptionsContainer()">
+                        <input type="text" #inputLangSearch spellcheck="false" formControlName=inputLangSearch autocomplete="off" placeholder="Select language" name="languageFilterValue" id="languageFilterValue" (focus)="openOptionsContainer()">
+                        <button type="button" data-input-filter-clear *ngIf="inputLangSearch.value.length > 0" (click)="clearInputLangSearch()">
+                            <span class="icon">
+                                <fa-icon [icon]="icons.faXmark"></fa-icon>
+                            </span>
+                        </button>
+                        <div class="optionsContainer" #optionsContainer *ngIf="showOptionsContianer" formArrayName="languages" clickedOutside="inputLanguages" >
+                            <ng-container *ngFor="let option of languagesFormArray.controls ; let i = index">
+                                <div class="option" *ngIf="option.value == false && this.filterForm.get('inputLangSearch')?.value.trim() > 0 || option.value == false && this.filterBox.value.languages[i].title.startsWith(this.filterForm.get('inputLangSearch')?.value.trim())">
+                                    <input type="checkbox" name="inputId{{i}}" id="inputId{{i}}" [formControlName]="i" (change)="addLangOption()">
+                                    <label for="inputId{{i}}">{{filterBox.value.languages[i].title}}</label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filterContainer cr">
+                <input type="checkbox" name="copyrightFilterValue" id="copyrightFilterValue" formControlName="copyRightValue">
+                <div class="filterLabelContainer">
+                    <label for="copyrightFilterValue">Copyright:</label>
+                </div>
+                <label class="indicatorContainer" for="copyrightFilterValue">
+                    <div class="indicator">
+                        <span class="icon">
+                            <fa-icon [icon]="icons.faCopyright"></fa-icon>
+                        </span>
+                    </div>
+                </label>
+            </div>
+            <div class="filterContainer century">
+                <div class="filterLabelContainer">
+                    <p class="labelRange">
+                        Century (from <span class="minValue">{{minCenturyValue}}</span> to <span class="maxValue">{{maxCenturyValue}}</span>)
+                    </p>
+                </div>
+                <div class="filterInputContainer">
+                    <div class="inputValueRange">
+                        <div class="progres" [ngStyle]="progresLinear()"></div>
+                        <input  type="range" name="minCenturyValue" id="minCenturyValue" [min]=filterBox.option.century.min [max]=filterBox.option.century.max formControlName="minCenturyValue" checkMinValCentury [maxVal]=maxCenturyValue>
+                        <input #inputCentryMax type="range" name="maxCenturyValue" id="maxCenturyValue" [min]=filterBox.option.century.min [max]=filterBox.option.century.max formControlName="maxCenturyValue" checkMaxValCentury [minVal]=minCenturyValue>
+                    </div>
+                </div>
+            </div>
+            <div class="filterContainer btns">
+                <button class="clearFilterBtn" type="button" (click)="resetForm()">reset</button>
+                <button class="searchFilterBtn">search</button>
+            </div>
+        </form>
+    </div>
+</div>

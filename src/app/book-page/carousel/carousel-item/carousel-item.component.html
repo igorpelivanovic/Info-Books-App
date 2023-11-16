@@ -1,0 +1,22 @@
+<div class="carouselItem"> 
+    <img [src]="item.formats['image/jpeg']" [alt]="item.title" (error)="defaultImg($event)">
+    <div class="containerItemInfo">
+        <div class="copyRightContainer" title="copyright">
+            <span class="icon">
+                <fa-icon [icon]="icons.faCopyright"></fa-icon>
+            </span>
+        </div>
+        <span class="title">
+            {{item.title}}
+        </span>
+        <div class="hiddenData">
+            <span class="author" *ngFor="let author of item.authors">
+                {{author.name}}
+            </span>
+            <span class="downloadCount">
+                <fa-icon [icon]="icons.faDownload"></fa-icon>
+                {{item.download_count | number:'':'en-US'}}
+            </span>
+        </div>
+    </div>
+</div>

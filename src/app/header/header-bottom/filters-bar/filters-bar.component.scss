@@ -1,0 +1,374 @@
+@use "sass:map";
+@import "./../../../../scss/variables";
+
+
+.filtersBar{
+    position: absolute;
+    overflow: hidden;
+    padding:0 10px 10px 10px;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    transition: 0s linear 1000ms;
+    transition-property: visibility overflow;
+    .filtersContainer{
+        padding: 10px 50px;
+        position: relative;
+        transform: translateY(0%);
+        transition: .5s transform;
+        border-radius: 0 0 10px 10px;
+        
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .filterContainer{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                input#copyrightFilterValue{
+                    display: none;
+                }
+                &.lang .filterInputContainer{
+                    width: 300px;
+                    flex-wrap: wrap;
+                    position: relative;
+                }
+                &.cr{
+                    label{
+                        cursor: pointer;
+                    }
+                    label.indicatorContainer .indicator{
+                        width: 42px;
+                        border-radius: 50px;
+                        position: relative;
+                        height: 24px;
+                        transition: .5s;
+                        transition-property: color background-color border-color; 
+                        border: 1px solid;
+                        span.icon{
+                            border-radius: 50%;
+                            overflow: hidden;
+                            top: 50%;
+                            left: 0;
+                            position: absolute;
+                            padding: 2px;
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                            font-size: 18px;
+                            transform: translate(3px, -50%) rotate(0deg) ;
+                            transition: .5s transform;
+                            transform-origin:  center;
+                            width: 18px;
+                            height: 18px;
+                        }
+                    }
+                    &:has(input#copyrightFilterValue:checked) label.indicatorContainer .indicator{
+                        span.icon{
+                            transform:  translate(18px, -50%)  rotate(360deg) ;
+                        }
+                    }
+                    input#copyrightFilterValue:checked ~ .indicatorContainer .indicator{
+                        span.icon{
+                            transform:  translate(18px, -50%)  rotate(360deg) ;
+                        }
+                    }
+                }
+                &.century{
+                    flex: 0 0 290px;
+                    justify-content: space-between;
+                    .filterLabelContainer{
+                        .labelRange{
+                            white-space: nowrap;
+                        }
+                    }
+                    .filterInputContainer{
+                        border: none;
+                        .inputValueRange{
+                            position: relative;
+                            width: 120px;
+                            input[type="range"]{
+                                position: absolute;
+                                background-color: transparent;
+                                width: 120px;
+                                top: 50%;
+                                left: 0;
+                                transform: translateY(-50%);
+                                height: 5px;
+                                pointer-events: none;
+                                appearance: none;
+                                cursor: pointer;
+                            }
+                            input[type="range"]::-webkit-slider-thumb{
+                                position: relative;
+                                width: 17px;
+                                height: 17px;
+                                border-radius: 50%;
+                                appearance: none;
+                                pointer-events: auto;
+                                border: 5px solid;
+                            }
+                            input[type="range"]::-moz-range-thumb{
+                                width: 17px;
+                                height: 17px;
+                                border-radius: 50%;
+                                appearance: none;
+                                pointer-events: auto;
+                                border: 5px solid;
+                            }
+                            .progres{
+                                width: 100%;
+                                position: absolute;
+                                top: 50%;
+                                left: 0;
+                                transform: translateY(-50%);
+                                height: 3px;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+                &.btns{
+                    gap: 20px;
+                    button{
+                        text-transform: capitalize;
+                        background-color: transparent;
+                        font-size: .9em;
+                        cursor: pointer;
+                    }
+                    .searchFilterBtn{
+                        padding: 4px 12px;
+                        border-radius: 8px;
+                    }
+                }
+                .filterLabelContainer{
+                    font-size: .9em;
+                }
+                .filterInputContainer{
+                    border: 1px solid;
+                    border-radius: 4px;
+                    display: flex;
+                    gap: 5px;
+                    padding: 2px 4px 2px 2px;
+                    position: relative;
+                    .checkedValues{
+                        display: flex;
+                        gap: 6px;
+                        .checkValue{
+                            cursor: pointer;
+                            border: 1px solid;
+                            border-radius: 4px;
+                            display: flex;
+                            align-items: center;
+                            gap: 6px;
+                            padding: 3px 6px;
+                            font-size: .9em;
+                            .checkValueTitle{
+                                text-transform: capitalize;
+                            }
+                            .checkValueBtn{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: transparent;
+                                button[data-check-filter-value]{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    padding: 0;
+                                    border-radius: 50%;
+                                    overflow: hidden;
+                                    cursor: pointer;
+                                    .icon{
+                                        display: flex;
+                                    }
+                                } 
+                            }
+                        }
+                    }
+                    .inputValue{
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        flex: 1 0 100px;
+                        overflow: hidden;
+                        input#languageFilterValue{
+                            background-color: transparent;
+                            font-size: .9em;
+                            padding: 4px 0;
+                            flex: 1 1;
+                            min-width: 100px
+                        }
+                        button[data-input-filter-clear]{
+                            background-color: transparent;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 0;
+                            overflow: hidden;
+                            margin-right: 5px;
+                            cursor: pointer;
+                            .icon{
+                                display: flex;
+                            }
+                        }
+                    }
+                    .optionsContainer{
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        font-size: .8em;
+                        border-radius: 0 0 5px 5px;
+                        overflow-y: scroll;
+                        max-height: 0px;
+                        scrollbar-width: thin;     
+                        max-height: 150px;
+                        z-index: 1;
+                        &::-webkit-scrollbar {
+                            width: 4px;
+                            border-radius: 8px;
+                        }
+                        &::-webkit-scrollbar-track {
+                            background-color: transparent; 
+                        }
+                        .option{
+                            text-transform: capitalize;
+                            cursor: pointer;
+                            transition: .4s;
+                            transition-property:  color background-color;
+                            input[type=checkbox]{
+                                display: none;
+                            }
+                            label{
+                                padding: 4px 6px;
+                                display: block;
+                                cursor: pointer;
+                                font-size: 1.1em;
+                            }
+                        }
+                        &:has(.option){
+                            border: 1px solid;
+                        }
+                    }
+                    &:has(.inputValue .optionsContainer){
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+                }
+            }
+            
+        }
+        
+        
+    }
+    &:has(.optionsContainer){
+        overflow: inherit;
+    }
+    
+}   
+
+@media (max-width: map.get($mediaScreenBreakPoints, "largeScreen")){
+    .filtersBar{
+        .filtersContainer{
+            form{
+                flex-wrap: wrap;
+                gap: 15px;
+                .filterContainer.btns{
+                    flex: 1;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+        }
+        
+    }
+}
+
+@media (max-width: map.get($mediaScreenBreakPoints, "largeScreen")){
+    .filtersBar{
+        .filtersContainer{
+            form{
+                flex-wrap: wrap;
+                gap: 15px;
+                .filterContainer.btns{
+                    flex: 1 0 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
+    .filtersBar{
+        .filtersContainer{
+            form{
+                gap: 20px;
+                .filterContainer{
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    &.lang{ 
+                        flex-wrap: nowrap;
+                        align-self: stretch;
+                        .filterInputContainer{
+                            flex: 1 1 100%;
+                            width: 200px;
+                        }
+                    }
+                    &.century{
+                        gap: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: map.get($mediaScreenBreakPoints, "mobileDevices")){
+    .filtersBar{
+        .filtersContainer{
+            form{
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 40px;
+                .filterContainer.lang{
+                    
+                    .filterInputContainer{
+                        width: auto;
+                        .inputValue{
+                            input#languageFilterValue{
+                                width: 0px;
+                                min-width: 0;
+                            }
+                        }
+                    }
+                }
+                .filterContainer.btns{
+                    align-self: stretch;
+                }
+                .filterContainer.century{
+                    flex: content;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    align-self: stretch;
+                    .filterInputContainer{
+                        width: 100%;
+                        .inputValueRange{
+                            width: 100%;
+                            input{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+.footerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .containerBtnToTop{
+        z-index: 10000;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        button[data-up-to-top]{
+            cursor: pointer;
+            display: block;
+            padding: 15px;
+            border-radius: 50%;
+            transition: .2s;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            span.icon{
+                display: flex;
+                font-size: 1.4em;
+                transition: .4s;
+            }
+            &:hover{
+                span.icon{
+                    transform: rotateY(180deg);
+                }
+            }
+        }
+    }
+    .footerTitle{
+        font-size: .95em;
+        &::first-letter{
+            text-transform: capitalize;
+        }
+        a{
+            text-transform: capitalize;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

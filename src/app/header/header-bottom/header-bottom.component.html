@@ -1,0 +1,18 @@
+
+<div class="headerBottom" @loadHeaderBtns>
+    <div class="container headerBottomContainer" >
+        <div class="titleBar">
+            <h1 appHeaderTitle></h1>
+        </div>
+        <div>
+            <div class="filterBar">
+                <button data-filter-button (click)="filterBox.toogle()">
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFilter"></fa-icon>
+                    </span>
+                </button>
+            </div>
+            <app-filters-bar @filtersBar *ngIf="filterBox.render"></app-filters-bar>
+        </div>
+    </div>
+</div>

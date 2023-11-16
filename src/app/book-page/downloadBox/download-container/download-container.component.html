@@ -1,0 +1,82 @@
+<div @dialogContainer class="downloadOptionsContainer"  >
+    <div class="dialog" @dialogBox>
+        <h2>Choose format</h2>
+        <button data-close-model-download-options (click)="removeDialog()">
+            <span class="icon">
+                <fa-icon [icon]="icons.faXmark"></fa-icon>
+            </span>
+        </button>
+        <ul>
+            <li *ngIf="hasProp(items, 'application/epub+zip')">
+                <a [href]="items['application/epub+zip']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFile"></fa-icon>
+                    </span>
+                    <span class="title">
+                        application/x-mobipocket-ebook
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="hasProp(items, 'application/epub+zip')">
+                <a [href]="items['application/epub+zip']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFileZipper"></fa-icon>
+                    </span>
+                    <span class="title">
+                        application/epub+zip
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="hasProp(items, 'application/x-mobipocket-ebook')">
+                <a [href]="items['application/x-mobipocket-ebook']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFileCode"></fa-icon>
+                    </span>
+                    <span class="title">
+                        text/html 
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="hasProp(items, 'image/jpeg')">
+                <a [href]="items['image/jpeg']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFileImage"></fa-icon>
+                    </span>
+                    <span class="title">
+                        image/jpeg
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="hasProp(items, 'text/html')">
+                <a [href]="items['text/html']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFilePen"></fa-icon>
+                    </span>
+                    <span class="title">
+                        text/plain
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="hasProp(items, 'text/html; charset=utf-8')">
+                <a [href]="items['text/html; charset=utf-8']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFilePen"></fa-icon>
+                    </span>
+                    <span class="title">
+                        text/plain; charset=us-ascii
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="hasProp(items, 'text/plain; charset=utf-8')">
+                <a [href]="items['text/plain; charset=utf-8']" target="_blank" >
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faFileLines"></fa-icon>
+                    </span>
+                    <span class="title">
+                        application/rdf+xml
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

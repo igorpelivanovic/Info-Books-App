@@ -1,0 +1,124 @@
+@use "sass:map";
+@import "./../../../scss/variables";
+
+
+.carouselItems{
+    width: 100%;
+    overflow: hidden;
+    padding-inline: 50px;
+    position: relative;
+    
+    .carouselItem.loading{
+        cursor: default;
+        position: relative;
+        flex: 0 0 130px;
+        height: 200px;
+        display: flex;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            animation: .8s infinite linear;
+            background-size: 200% 200%;
+            animation-name: ContentloadingBgY;
+        }
+    }
+    &:hover{
+        .carouselBtns{
+            button[data-slider-btn]{
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-50%);
+            }
+        }
+    }
+    .items{
+        transition: .5s transform;
+        display: flex;
+        gap: 20px;
+        flex-wrap: nowrap;
+    }
+    .carouselBtns{
+        button[data-slider-btn]{
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 50%;
+            z-index: 12;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: .5s;
+            transition-property: background-color color;
+            &.left{
+                left: 0px;
+            }
+            &.right{
+                right: 0px;
+            }
+            .icon{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3em;
+                fa-icon{
+                    display: flex;
+                }
+            }
+        }
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: -5px;
+        width: 50px;
+        height: 100%;
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: -5px;
+        width: 50px;
+        height: 100%;
+    }
+}
+
+@media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
+    .carouselItems{
+        .items{
+            flex-direction: row;
+            flex-wrap: wrap;   
+            justify-content: center;
+        }
+        .carouselItem.loading{
+            flex: 0 0 130px;
+        }
+    }
+    
+}
+@media (max-width: map.get($mediaScreenBreakPoints, "mobileDevices")){
+    .carouselItems{
+        .items{
+            flex-direction: row;
+            flex-wrap: wrap;   
+            justify-content: center;
+        }
+        .carouselItem.loading{
+            flex: 0 0 180px;
+            height: 270px;
+        }
+    }
+}

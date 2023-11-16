@@ -1,0 +1,42 @@
+
+.headerBottom{
+    backdrop-filter: blur(20px);
+    background: rgb(248,251,255);
+    .headerBottomContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+        .titleBar{
+            padding: 10px 0;
+            h1{
+                font-size: 1.7em;
+                &::first-letter{
+                    text-transform: capitalize;
+                }
+            }
+        }
+        .filterBar{
+            padding: 10px 0;
+            position: relative;
+
+            >button{
+                width: 30px;
+                height: 30px;
+                display: flex;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                font-size: 1em;
+                transition: .2s;
+                transition-property: background-color color;
+                background-color: transparent;
+                
+                span.icon{
+                    display: flex;
+                }
+            }
+        }
+    }
+}

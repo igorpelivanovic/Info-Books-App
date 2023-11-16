@@ -1,0 +1,58 @@
+:host{
+    flex: 0 0 130px;
+    height: 200px;
+    display: flex;
+    .default{
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        box-shadow: none;
+        flex: 1;
+        overflow: hidden;
+        .defaultContainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            flex: 1;
+        }
+        .titleDefault{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+    
+            span.icon{
+                background-color: #232134;
+                display: flex;
+                width: 26px;
+                height: 26px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+            }
+            span.title{
+                font-size: .85em;
+                font-weight: 700;
+            }
+        }
+    }
+    
+}
+@media (max-width: 768px){
+    :host{
+        flex: 0 0 130px;
+        .defaultContainer{
+            width: 130px;
+        }
+    }
+}
+@media (max-width: 480px){
+    :host{
+        flex: 0 0 180px;
+        height: 270px;
+        .defaultContainer{
+            width: 180px;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<div class="container footerContainer">
+    <div class="containerBtnToTop" @btn *ngIf="renderBtn">
+        <button  data-up-to-top (click)="goToTopPage()">
+            <span class="icon">
+                <fa-icon [icon]="icons.faChevronUp"></fa-icon>
+            </span>
+        </button>
+    </div>
+    <p class="footerTitle">
+        copyright &copy; 2023
+        <a href="https://github.com/igorpelivanovic">igor pelivanović</a>
+    </p>
+</div>

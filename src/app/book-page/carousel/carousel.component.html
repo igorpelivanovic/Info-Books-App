@@ -1,0 +1,23 @@
+<div class="carouselItems" >
+    <div class="items" #carouselItems>
+    <ng-container *ngIf="isLoading">
+        <app-carousel-item #carouselItem *ngFor="let item of items.slice(0, 10) | formatCarouselItems: id" [item]="item" (click)="goToId(item.id)" ></app-carousel-item>
+        <app-carousel-default-item (click)="goToSubject()"></app-carousel-default-item>
+    </ng-container>
+    <ng-container *ngIf="!isLoading">
+        <div class="carouselItem loading" *ngFor="let item of createArr(10)"></div>
+    </ng-container>
+    </div>
+    <div class="carouselBtns" *ngIf="renderBtns">
+        <button class="left" *ngIf="currentXPos < 0" data-slider-btn (click)="caroselGoRight()">
+            <span class="icon">
+                <fa-icon [icon]="icons.faAngleLeft"></fa-icon>
+            </span>
+        </button>
+        <button class="right" *ngIf="renderRightBtn" data-slider-btn (click)="caroselGoLeft()">
+            <span class="icon">
+                <fa-icon [icon]="icons.faAngleRight"></fa-icon>
+            </span>
+        </button>
+    </div>
+</div>

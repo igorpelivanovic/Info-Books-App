@@ -1,0 +1,22 @@
+<div class="containerItem"> 
+    <img [src]="book.formats['image/jpeg']" [alt]="book.title" (error)="errorImg($event)">
+    <div class="containerItemInfo">
+        <div class="copyRightContainer" title="copyright" *ngIf="book.copyright">
+            <span class="icon">
+                <fa-icon [icon]="icons.faCopyright"></fa-icon>
+            </span>
+        </div>
+        <span class="title">
+            {{book.title}}
+        </span>
+        <div class="hiddenData">
+            <span class="author" >
+                {{book.authors| formatAuthorArray }}
+            </span>
+            <span class="downloadCount">
+                <fa-icon [icon]="icons.faDownload"></fa-icon>
+                {{book.download_count | number:'':'en-US'}}
+            </span>
+        </div>
+    </div>
+</div>

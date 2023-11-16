@@ -1,0 +1,128 @@
+@use "sass:map";
+@import "./../../../scss/variables";
+
+.headerTop{
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    z-index: 100;
+    position: relative;
+    .headerTopContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 140px;
+
+        .logoContainer{
+            width: 100px;
+        }
+        .searchInputContainer{
+            label{
+                display: flex;
+                padding: 10px 14px 10px 20px;
+                border-radius: 8px;
+                
+                .searchInputContainer{
+                    position: relative;
+
+                    button[data-clear-input-search]{
+                        padding: 0;
+                        position: absolute;
+                        top: 50%;
+                        right: 5px;
+                        font-size: .9em;
+                        background-color: transparent;
+                        transform: translate(0, -50%,);
+                        cursor: pointer;
+                        border-radius: 50%;
+                        overflow: hidden;
+
+                        span{
+                            display: flex;
+                        }
+
+                    }
+                    input[type="text"]{
+                        background-color: transparent;
+                        width: 350px;
+                        font-size: .9em;
+
+                        &::placeholder{
+                            font-weight: 700;
+                            font-size: .9em;
+                        }
+                    }
+                }
+                button[data-apply-search]{
+                    font-size: .9em;
+                    transition: .2s color;
+                    cursor: pointer;
+                }
+            }
+        }
+        .changeThemeInputContianer{
+            button[data-apply-theme]{
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                font-size: 1em;
+                cursor: pointer;
+                padding: 0;
+                overflow: hidden;
+
+                .circle{
+                    display: flex;
+                    align-items: center;
+                    width: 200%;
+                    height: 200%;
+                    position: relative;
+                    top: 50%;
+                    transition: .5s transform;
+                    transform: translateY(-50%) rotate(0deg);
+                    .icon{
+                        flex: 0 0 50%;
+                        display: flex;
+                        justify-content: center;
+
+                        &.moon{
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
+    .headerTop{
+        .searchInputContainer{
+            flex: 1;
+        }
+        .headerTopContainer{
+            flex-wrap: wrap;
+            gap: 15px;
+            height: auto;
+            padding: 20px 0;
+            input#searchInput{
+                width: 100%;
+            }
+            .logoContainer{
+                flex: 1 0 100%;
+                display: flex;
+                justify-content: center;
+                a{
+                    flex: 0 0 150px;
+                    display: block;
+                }
+            }
+        }
+    }
+}
+@media (max-width: map.get($mediaScreenBreakPoints, "mobileDevices")){
+    .headerTop{
+        .headerTopContainer{
+            input#searchInput{
+                width: 100%;
+            }
+        }
+    }
+}

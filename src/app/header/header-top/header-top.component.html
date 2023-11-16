@@ -1,0 +1,40 @@
+<div class="headerTop">
+    <div class="container headerTopContainer">
+        <div class="logoContainer">
+            <a [routerLink]="['']">
+                <img src="../../assets/logo-light-theme.png" alt="logo">
+            </a>
+        </div>
+        <div class="searchInputContainer">
+            <form #formSearch [formGroup]="form" (submit)="submitForm()">
+                <label for="searchInput" >
+                    <div class="searchInputContainer">
+                        <input #searchValue type="text" class="placeholderTextThird" id="searchInput" name="searchInput" placeholder="Search by author, title, name" spellcheck="false"  autocomplete="off" formControlName="searchValue" >
+                        <button data-clear-input-search type="button" *ngIf="searchValue.value.length > 0" (click)="form.reset({searchValue: ''})" >
+                            <span class="icon">
+                                <fa-icon [icon]="icons.faCircleXmark"></fa-icon>
+                            </span>
+                        </button>
+                    </div>
+                    <button data-apply-search class="applySearchBtn">
+                        <span class="icon">
+                            <fa-icon [icon]="icons.faMagnifyingGlass"></fa-icon>
+                        </span>
+                    </button>
+                </label>
+            </form>
+        </div>
+        <div class="changeThemeInputContianer">
+            <button data-apply-theme (click)="changeTheme()">
+                <div class="circle">
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faSun"></fa-icon>
+                    </span>
+                    <span class="icon moon">
+                        <fa-icon [icon]="icons.faMoon"></fa-icon>
+                    </span>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>

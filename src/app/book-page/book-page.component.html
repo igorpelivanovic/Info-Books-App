@@ -1,0 +1,52 @@
+<div class="container" [ngClass]="{'loading' : loading}">
+    <div class="previewItem">
+        <div class="imgContainer">
+            <img [src]="book?.formats['image/jpeg']" alt="" *ngIf="!loading" (error)="errorImg($event)">
+            <div class="copyRightCheck" title="copyright" *ngIf="book?.copyright">
+                <span class="icon">
+                    <fa-icon [icon]="icons.faCopyright"></fa-icon>
+                </span>
+            </div>
+        </div>
+        <div class="infoContainer">
+            <div class="titleItem">
+                <h1>{{book?.title ? book?.title: '&nbsp;'}}</h1>
+            </div>
+            <div class="author">
+                <span>{{book?.authors ? (book?.authors | formatAuthorArray) : '&nbsp;'}}</span>
+            </div>
+            <div class="languages">
+                <span class="label">{{!loading ? 'languages:' : '&nbsp;'}}</span>
+                <span class="value" *ngIf="!loading">{{book?.languages | formatLanguages}}</span>
+            </div>
+            <div class="subjects">
+                <span class="label">{{!loading ? 'subject:' : '&nbsp;'}}</span>
+                <ul>
+                    <li *ngFor="let subs of book?.subjects">
+                        <button data-subject-item-preview (click)="sendSubject(subs)">
+                            {{subs}}
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="downloadItemContainer" *ngIf="formatLenghtBook > 0">
+                <button data-download-item (click)="renderDownloadContianer()">
+                    <span class="title">
+                        download
+                    </span>
+                    <span class="icon">
+                        <fa-icon [icon]="icons.faDownload"></fa-icon>
+                    </span>
+                </button>
+                <app-download-container @dialogContainer *ngIf="dialog.hasOpen()" [items]="book?.formats" ></app-download-container>
+            </div>
+        </div>
+    </div>
+    <div class="carouselContianer">
+        <div class="carouselTitle">
+            <h2>Recomended books:</h2>
+        </div>
+        <app-carousel [loading]="loadingCarouselData" [items]="carouselData" [subject]="carouselSubject" [id]="id"></app-carousel>
+        
+    </div>
+</div>
