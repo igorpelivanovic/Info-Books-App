@@ -15,10 +15,7 @@ export class DatasService {
     queryParams.forEach((value: any, key: string)=>{
       params = params.set(key, value)
     })
-    let header = new HttpHeaders()
-    header.set('Access-Control-Allow-Origin', '*')
     return this.http.get<Books>(environment.proxyServerUrl+'?quest='+environment.datasServerUrl+params.toString(), {
-      headers: header,
     })
   }
 }

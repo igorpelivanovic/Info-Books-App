@@ -87,7 +87,7 @@ export class BookPageComponent implements OnInit, OnDestroy {
     
   }
   protected getSubject(){
-    return new Map().set("topic", this.carouselSubject)
+    return new Map().set('page', 1).set("topic", this.carouselSubject)
   }
   renderDownloadContianer():void{
     this.dialog.openDialog()
