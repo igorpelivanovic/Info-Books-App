@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { Books } from '../interfaces/datas';
@@ -15,6 +15,10 @@ export class DatasService {
     queryParams.forEach((value: any, key: string)=>{
       params = params.set(key, value)
     })
-    return this.http.get<Books>(environment.proxyServerUrl+environment.datasServerUrl+params.toString())
+    let header = new HttpHeaders()
+    header.set('Access-Control-Allow-Origin', '*')
+    return this.http.get<Books>(environment.proxyServerUrl+environment.datasServerUrl+params.toString(), {
+      headers: header
+    })
   }
 }
