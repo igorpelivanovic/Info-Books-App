@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  proxyServerUrl: 'https://thingproxy.freeboard.io/fetch/',
+  proxyServerUrl: 'https://api.codetabs.com/v1/proxy',
   datasServerUrl: 'http://gutendex.com/books?'
 };
 
