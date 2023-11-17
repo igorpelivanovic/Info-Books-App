@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  proxyServerUrl: 'https://thingproxy.freeboard.io/fetch/',
+  datasServerUrl: 'http://gutendex.com/books?'
 };
 
 /*

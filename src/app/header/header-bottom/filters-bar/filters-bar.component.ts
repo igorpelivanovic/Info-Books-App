@@ -70,7 +70,6 @@ export class FiltersBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.generateForm()
-    console.log(this.filterBox.value.languages)
   }
   generateForm(): void{
     
