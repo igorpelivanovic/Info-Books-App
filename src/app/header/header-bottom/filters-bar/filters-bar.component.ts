@@ -72,7 +72,6 @@ export class FiltersBarComponent implements OnInit, OnDestroy {
     this.generateForm()
   }
   generateForm(): void{
-    
     this.filterForm = this.form.group({
       inputLangSearch: new FormControl(""),
       languages: this.form.array([]),

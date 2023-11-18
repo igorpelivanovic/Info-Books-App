@@ -63,6 +63,9 @@
                             transform-origin:  center;
                             width: 18px;
                             height: 18px;
+                            fa-icon{
+                                display: flex;
+                            }
                         }
                     }
                     &:has(input#copyrightFilterValue:checked) label.indicatorContainer .indicator{
@@ -289,22 +292,6 @@
     }
 }
 
-@media (max-width: map.get($mediaScreenBreakPoints, "largeScreen")){
-    .filtersBar{
-        .filtersContainer{
-            form{
-                flex-wrap: wrap;
-                gap: 15px;
-                .filterContainer.btns{
-                    flex: 1 0 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                }
-            }
-        }
-    }
-}
-
 @media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
     .filtersBar{
         .filtersContainer{
@@ -339,13 +326,11 @@
                 align-items: flex-start;
                 gap: 40px;
                 .filterContainer.lang{
-                    
                     .filterInputContainer{
                         width: auto;
                         .inputValue{
                             input#languageFilterValue{
                                 width: 0px;
-                                min-width: 0;
                             }
                         }
                     }
@@ -362,7 +347,7 @@
                         width: 100%;
                         .inputValueRange{
                             width: 100%;
-                            input{
+                            input[type="range"]{
                                 width: 100%;
                             }
                         }

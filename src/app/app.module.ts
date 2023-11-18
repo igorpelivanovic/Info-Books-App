@@ -14,13 +14,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FiltersBarComponent } from './header/header-bottom/filters-bar/filters-bar.component';
 import { MinCenturyValueDirective, MaxCenturyValueDirective, ClickedOutSideDirective } from './header/header-bottom/filters-bar/directives.directive';
 import { FilterPipe } from './header/header-bottom/filters-bar/pipes.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthorFormatPipe} from './books-page/books-item/pipes/pipes.pipe';
 import { ItemSkeletonComponent } from './books-page/loading-skeleton-item/items-skeleton/items-skeleton.component';
 import { HeaderComponent } from './header/header.component';
 import { appHeaderTitleDirective } from './header/header-top/directives.directive';
 import { PipesModule } from './pipes/pipes.module';
 import { AppInitService } from './services/app-init.service';
+import { RequestInterceptorInterceptor } from './interceptors/request-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,11 @@ import { AppInitService } from './services/app-init.service';
         return ()=>appInitService.init()
       },
       deps: [AppInitService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorInterceptor,
       multi: true
     }
   ],

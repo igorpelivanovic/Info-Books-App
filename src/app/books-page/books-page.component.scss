@@ -1,7 +1,6 @@
 .containerItems{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding-top: 60px;
     row-gap: 30px;
     justify-items: center;
     .notFound{

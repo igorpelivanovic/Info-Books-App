@@ -43,7 +43,6 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
     if (this.form.get("searchValue")?.errors?.['trim']) return
-    console.log(this.form.get("searchValue")?.value.trim())
     this.router.navigate(['books'],{
       queryParams: {search: this.form.get("searchValue")?.value.trim()},
 

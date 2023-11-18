@@ -750,6 +750,7 @@ body{
         #app {
             .container{
                 max-width: 750px;
+                
             }
         }
     }
@@ -760,20 +761,27 @@ body{
             .container{
                 width: 100%;
                 padding-inline: 10px;            }
-            main{
-                margin-top: 200px;
-            }
+                footer{
+                    .containerBtnToTop{
+                        bottom: 50px;
+                        right: 50px;
+                    }
+                }
         }
     }
 }
-@media (max-width: map.get($mediaScreenBreakPoints, "tablets")){
+@media (max-width: map.get($mediaScreenBreakPoints, "mobileDevices")){
     body {
         #app {
             .container{
                 width: 100%;
                 padding-inline: 10px;            }
-            main{
-                margin-top: 200px;
+                
+            footer{
+                .containerBtnToTop{
+                    bottom: 20px;
+                    right: 20px;
+                }
             }
         }
     }
