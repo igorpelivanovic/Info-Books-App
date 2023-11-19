@@ -27,7 +27,7 @@ export class RequestInterceptorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if(request.context.get(CACHE_PROXY)){
       let params = new HttpParams()
-      let newRequset = request.clone({url : environment.proxyServerUrl+encodeURIComponent(`${request.url}?${request.params.toString()}`), params: params})
+      let newRequset = request.clone({url : environment.proxyServerUrl+'?quest='+encodeURIComponent(`${request.url}${request.params.toString()}`), params: params})
       return next.handle(newRequset);
     }
     return next.handle(request)
