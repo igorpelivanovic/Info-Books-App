@@ -17,6 +17,6 @@ export class CarouselItemComponent implements OnInit {
   }
   defaultImg(event: Event):void{
       let element = event.target as HTMLInputElement
-      element.src = "./../../../assets/no-image.png"
+      element.src = "assets/no-image.png"
   }
 }

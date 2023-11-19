@@ -19,25 +19,8 @@ export function cacheProxy(): HttpContext{
   return new HttpContext().set(CACHE_PROXY, true)
 }
 
-@Injectable()
-export class RequestInterceptorInterceptor implements HttpInterceptor {
 
-  constructor() {}
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if(request.context.get(CACHE_PROXY)){
-      console.log()
-      let params = new HttpParams({encoder:new  codex()}).set("quest", request.url+request.params.toString())
-      let newRequset = request.clone({url : environment.proxyServerUrl, params: params})
-      console.log(encodeURIComponent(request.urlWithParams))
-      console.log(params.toString())
-      return next.handle(newRequset);
-    }
-    return next.handle(request)
-  }
-}
-
-class codex implements HttpParameterCodec{
+class CustomCodec implements HttpParameterCodec{
   encodeKey(key: string): string {
     return encodeURIComponent(key)
   }
@@ -52,3 +35,20 @@ class codex implements HttpParameterCodec{
   }
   
 } 
+
+
+@Injectable()
+export class RequestInterceptorInterceptor implements HttpInterceptor {
+
+  constructor() {}
+
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if(request.context.get(CACHE_PROXY)){
+      console.log()
+      let params = new HttpParams({encoder: new CustomCodec()}).set("quest", request.url+request.params.toString())
+      let newRequset = request.clone({url : environment.proxyServerUrl, params: params})
+      return next.handle(newRequset);
+    }
+    return next.handle(request)
+  }
+}
