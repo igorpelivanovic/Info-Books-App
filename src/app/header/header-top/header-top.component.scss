@@ -81,6 +81,9 @@
                         flex: 0 0 50%;
                         display: flex;
                         justify-content: center;
+                        fa-icon{
+                            display: flex;
+                        }
 
                         &.moon{
                             transform: rotate(180deg);

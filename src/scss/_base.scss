@@ -1,6 +1,29 @@
 @use "sass:map";
 
 
+@supports (not selector(::-webkit-scrollbar)) and (not selector(::-webkit-scrollbar-track)) and (not selector(::-webkit-scrollbar-thumb)){
+    *{
+        scrollbar-width: thin;
+        scrollbar-color: map.get($lightTheme, "headBtnColor") transparent;
+    }
+}
+@supports selector(::-webkit-scrollbar) and selector(::-webkit-scrollbar-track) and selector(::-webkit-scrollbar-thumb){
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb{
+        border-radius: 8px;
+        background-color: map.get($lightTheme, "headBtnColor");
+
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: map.get($lightTheme, "hoverHeadBtnColor")
+    }
+}
+
 *{
     box-sizing: border-box;
     font-family: "Helvetica";
@@ -10,22 +33,7 @@
 body{
     margin: 0;
     width: 100%;
-    scrollbar-width: thin;
-    scrollbar-color: map.get($lightTheme, "labelSearchBorder") transparent;
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-    &::-webkit-scrollbar-track {
-    border-radius: 8px;
-    }
-    &::-webkit-scrollbar-thumb{
-    border-radius: 8px;
-    background-color: map.get($lightTheme, "headBtnColor");
-
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: map.get($lightTheme, "hoverHeadBtnColor")
-    }
+    
     input[type="text"]{
         outline: none;
         border: none;
@@ -132,12 +140,6 @@ body{
         }
     }
     &:not(.dark){
-        &::-webkit-scrollbar-thumb {
-            background-color: map.get($lightTheme, "headBtnColor");;
-        }
-        &::-webkit-scrollbar-thumb:hover {
-            background-color: map.get($lightTheme, "hoverHeadBtnColor")
-        }
         h1, h2, h3, h4, h5, h6{
             color: map.get($lightTheme, "headTitle");
         }
@@ -217,14 +219,6 @@ body{
                                         background-color: map.get($lightTheme, "background");
                                         box-shadow: none;
                                         border-color: map.get($lightTheme, "languagesOptionsColor");
-                                        scrollbar-color: map.get($lightTheme, "headBtnColor") transparent;
-    
-                                        &::-webkit-scrollbar-thumb {
-                                            background-color: map.get($lightTheme, "headBtnColor"); 
-                                        }
-                                        &::-webkit-scrollbar-thumb:hover {
-                                            background-color: map.get($lightTheme, "hoverHeadBtnColor"); 
-                                        }
                                         &.active{
                                             box-shadow: 0px 4px 6px 0px #00000061;
                                         }
@@ -511,13 +505,6 @@ body{
                                         background-color: map.get($darkTheme, "dark");
                                         box-shadow: none;
                                         border-color: map.get($darkTheme, "purple-light-900");
-                                        scrollbar-color: map.get($darkTheme, "purple") transparent;
-                                        &::-webkit-scrollbar-thumb {
-                                            background-color: map.get($darkTheme, "purple"); 
-                                        }
-                                        &::-webkit-scrollbar-thumb:hover {
-                                            background-color: map.get($darkTheme, "purple-light-100"); 
-                                        }
                                         &.active{
                                             box-shadow: 0px 4px 6px 0px #00000061;
                                         }
